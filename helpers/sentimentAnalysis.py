@@ -1,3 +1,7 @@
+"""
+Sentiment analysis operations.
+"""
+
 from textblob import TextBlob
 
 def analyze_sentiment(text):

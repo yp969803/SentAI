@@ -1,9 +1,15 @@
+"""
+Controllers entry for file routed
+"""
+
 from flask import request, jsonify
 from helpers import fileHelper, sentimentAnalysis
 import os 
 
 
 upload_dir = "uploads"
+
+"""File upload controller"""
 def upload():
     if 'file' not in request.files:
         return jsonify({"error":"No file part"}), 400

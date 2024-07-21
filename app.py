@@ -1,3 +1,7 @@
+"""
+Main entry of the application
+"""
+
 from flask import Flask 
 from dotenv import load_dotenv
 import os
@@ -9,7 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 
 
-
+"""Creating uploads directory if doesnt exists"""
 os.makedirs(upload_dir, exist_ok=True)
 
 app.register_blueprint(file_bp, url_prefix='/api/file')
