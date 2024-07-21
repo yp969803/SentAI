@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from helpers import fileHelper
+from helpers import fileHelper, sentimentAnalysis
 import os 
 
 
@@ -20,7 +20,8 @@ def upload():
         with open(filepath, 'r') as f:
             content = f.read()
         
-        return jsonify({'message': 'File uploaded successfully', 'content': content}), 200
+        sents = sentimentAnalysis.analyze_sentiment(content)
+        return jsonify({'message': 'File uploaded successfully', 'sentiments': sents}), 200
     
     return jsonify({'error': 'Invalid file type'}), 400
     
