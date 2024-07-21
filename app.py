@@ -2,12 +2,15 @@ from flask import Flask
 from dotenv import load_dotenv
 import os
 from routes.fileRoutes import file_bp
-
+from controllers.fileController import upload_dir
 
 load_dotenv()
 
 app = Flask(__name__)
 
+
+
+os.makedirs(upload_dir, exist_ok=True)
 
 app.register_blueprint(file_bp, url_prefix='/api/file')
 
