@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 #### Run applicattion
 ```
-python app.py
+python index.py
 ```
 
 ## API Reference
