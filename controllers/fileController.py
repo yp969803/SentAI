@@ -11,14 +11,15 @@ upload_dir = "uploads"
 
 """File upload controller"""
 def upload():
-    if 'file' not in request.files:
+   try:
+      if 'file' not in request.files:
         return jsonify({"error":"No file part"}), 400
     
-    file = request.files['file']
-    if file.filename == "":
+      file = request.files['file']
+      if file.filename == "":
         return jsonify({'error': 'No selected file'}), 400
     
-    if file and fileHelper.allowed_file(file.filename):
+      if file and fileHelper.allowed_file(file.filename):
         filename = file.filename
         filepath=os.path.join(upload_dir, filename)
         file.save(filepath)
@@ -29,7 +30,12 @@ def upload():
         sents = sentimentAnalysis.analyze_sentiment(content)
         return jsonify({'message': 'File uploaded successfully', 'sentiments': sents}), 200
     
-    return jsonify({'error': 'Invalid file type'}), 400
+      return jsonify({'error': 'Invalid file type'}), 400
+   except Exception as e:
+    # Code that runs if an exception occurs
+    print(f"An error occurred: {e}")
+    return jsonify({'error': e}), 500
+
     
     
     
