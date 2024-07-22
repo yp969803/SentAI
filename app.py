@@ -7,10 +7,14 @@ from dotenv import load_dotenv
 import os
 from routes.fileRoutes import file_bp
 from controllers.fileController import upload_dir
+from flask_cors import CORS
 
 load_dotenv()
 
 app = Flask(__name__)
+
+# Enable CORS
+CORS(app)
 
 
 """Creating uploads directory if doesnt exists"""
